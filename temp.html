@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Progress Bar with Increasing Percentage</title>
+    <style>
+        .progress-container {
+            width: 300px;
+            height: 30px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(to right, #86B6F6, #B4D4FF);
+            transition: width 1s ease;
+        }
+
+        .percentage-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #555;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-container">
+    <div class="progress-bar" id="myProgressBar"></div>
+    <div class="percentage-label" id="percentageLabel">0%</div>
+</div>
+
+<script>
+    function updateProgressBar(value) {
+        var progressBar = document.getElementById("myProgressBar");
+        var percentageLabel = document.getElementById("percentageLabel");
+        progressBar.style.width = value + "%";
+        percentageLabel.textContent = value + "%";
+    }
+
+    // Gradually increase progress from 0 to 50% over 5 seconds
+    var value = 0;
+    var interval = setInterval(function () {
+        if (value >= 50) {
+            clearInterval(interval);
+        } else {
+            value += 1;
+            updateProgressBar(value);
+        }
+    }, 100);
+
+</script>
+
+</body>
+</html>
